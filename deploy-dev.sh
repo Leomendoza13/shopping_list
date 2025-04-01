@@ -3,7 +3,7 @@ set -e
 
 PROJECT_ID="recrutement-polyconseil"
 REGION="europe-west1"
-IMAGE_NAME="europe-west1-docker.pkg.dev/${PROJECT_ID}/shopping-list-repo-dev/myapp:latest"
+IMAGE_NAME="europe-west1-docker.pkg.dev/${PROJECT_ID}/shopping-list-repo-dev/app:latest"
 
 cd terraform/env/dev/setup/
 terraform init
@@ -23,8 +23,6 @@ docker push ${IMAGE_NAME}
 
 
 cd terraform/env/dev/
-#terraform apply 
+terraform apply -target=module.cloudrun
 
-SERVICE_URL=$(terraform output -raw service_url)
-echo "✅ Déploiement terminé ! Service disponible à l'adresse :"
-echo "${SERVICE_URL}"
+#SERVICE_URL=$(terraform output -raw service_url)
