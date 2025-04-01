@@ -18,3 +18,8 @@ variable database_name {
     default = "shopping-database"
 }
 
+variable repository_id {
+    type = string
+    description = "The id of the registry"
+    default = "shopping-list-repo"
+}
