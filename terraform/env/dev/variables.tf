@@ -12,7 +12,7 @@ variable region {
     default = "europe-west1"
 }
 
-variable "environment" {
+variable environment {
   description = "Environment (dev, staging, prod)"
   default     = "dev"
 }
