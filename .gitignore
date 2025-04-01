@@ -12,3 +12,5 @@ terraform.rc
 *.backup
 *~
 .*.swp
+
+.venv
