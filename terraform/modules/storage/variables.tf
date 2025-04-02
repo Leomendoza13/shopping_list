@@ -23,3 +23,8 @@ variable repository_id {
     description = "The id of the registry"
     default = "shopping-list-repo"
 }
+/*
+variable private_network {
+    description = "VPC ID for private connexions"
+    type        = string
+}*/
