@@ -27,12 +27,6 @@ resource "google_sql_database_instance" "sql_database_instance" {
       }
     }
 
-    /*
-    ip_configuration {
-      ipv4_enabled    = false 
-      private_network = var.private_network
-    }*/
-
     backup_configuration {
       enabled    = true
       start_time = "02:00"
