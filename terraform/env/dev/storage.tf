@@ -7,7 +7,7 @@ module "storage" {
   database_name              = "shopping-database-${var.environment}"
 
   repository_id = "shopping-list-repo-${var.environment}"
-  
+
   #database connection
   database_user     = var.database_user
   database_password = var.database_password
