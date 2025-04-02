@@ -24,6 +24,21 @@ resource "google_cloud_run_v2_service" "default" {
       }
       
       env {
+        name  = "DATABASE_URL"
+        value = var.database_url
+      }
+
+      env {
+        name  = "DB_USER"
+        value = var.database_user
+      }
+        
+        env {
+          name  = "DB_PASSWORD"
+          value = var.database_password
+      }
+
+      env {
         name  = "DB_CONNECTION_NAME"
         value = var.db_connection_name
       }

@@ -38,3 +38,18 @@ variable vpc_connector_name {
     type = string
     description = "vpc_connector_name"
 }*/
+
+variable "database_user" {
+  description = "User name for database"
+  type        = string
+}
+
+variable "database_password" {
+  description = "Password for database"
+  type        = string
+}
+
+variable "database_url" {
+  description = "Url for database"
+  type        = string
+}
