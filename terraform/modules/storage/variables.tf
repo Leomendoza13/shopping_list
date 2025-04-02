@@ -24,11 +24,6 @@ variable "repository_id" {
   default     = "shopping-list-repo"
 }
 
-variable "private_network" {
-  description = "VPC ID for private connexions"
-  type        = string
-}
-
 variable "database_user" {
   description = "User name for database"
   type        = string
@@ -42,4 +37,10 @@ variable "database_password" {
 variable cloud_run_ip_address {
     description = "Ip address of cloud run"
     type = string
-}*/
+}
+
+variable "private_network" {
+  description = "VPC ID for private connexions"
+  type        = string
+}
+*/
