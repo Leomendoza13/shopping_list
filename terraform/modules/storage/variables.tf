@@ -23,11 +23,11 @@ variable "repository_id" {
   description = "The id of the registry"
   default     = "shopping-list-repo"
 }
-/*
-variable private_network {
-    description = "VPC ID for private connexions"
-    type        = string
-}*/
+
+variable "private_network" {
+  description = "VPC ID for private connexions"
+  type        = string
+}
 
 variable "database_user" {
   description = "User name for database"
@@ -38,3 +38,8 @@ variable "database_password" {
   description = "Password for database"
   type        = string
 }
+/*
+variable cloud_run_ip_address {
+    description = "Ip address of cloud run"
+    type = string
+}*/

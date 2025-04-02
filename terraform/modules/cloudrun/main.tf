@@ -5,7 +5,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 4.0"
+      version = "~> 6.0"
     }
   }
 }
@@ -17,7 +17,6 @@ resource "google_cloud_run_v2_service" "default" {
   ingress             = "INGRESS_TRAFFIC_ALL"
 
   template {
-    timeout = "300s"
 
     #service_account = var.service_account 
     /*
@@ -25,6 +24,7 @@ resource "google_cloud_run_v2_service" "default" {
       "run.googleapis.com/vpc-access-connector" = var.vpc_connector_name
       "run.googleapis.com/vpc-access-egress"    = "all-traffic"
     }*/
+
 
     containers {
       image = var.image_path

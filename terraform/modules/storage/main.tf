@@ -5,7 +5,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 4.0"
+      version = "~> 6.0"
     }
   }
 }
@@ -18,17 +18,49 @@ resource "google_sql_database_instance" "sql_database_instance" {
   settings {
     tier = "db-f1-micro"
 
-    # ip_configuration {
-    #   ipv4_enabled    = false 
-    #   private_network = var.private_network  
-    # }
 
-    #only dev
     ip_configuration {
+      ipv4_enabled = true
       authorized_networks {
         name  = "cloud-run"
         value = "0.0.0.0/0"
       }
+    }
+
+    /*
+    ip_configuration {
+      ipv4_enabled    = false 
+      private_network = var.private_network
+    }*/
+
+    backup_configuration {
+      enabled    = true
+      start_time = "02:00"
+    }
+
+    database_flags {
+      name  = "log_connections"
+      value = "on"
+    }
+
+    database_flags {
+      name  = "log_disconnections"
+      value = "on"
+    }
+
+    database_flags {
+      name  = "log_lock_waits"
+      value = "on"
+    }
+
+    database_flags {
+      name  = "log_checkpoints"
+      value = "on"
+    }
+
+    database_flags {
+      name  = "log_temp_files"
+      value = "0"
     }
   }
   deletion_protection = false
