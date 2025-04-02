@@ -1,33 +1,77 @@
-name: Python CI
+name: Python & Terraform CI
 
 on: [push, pull_request]
 
 jobs:
-  lint-test:
+  python-lint-test:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Check out code
-        uses: actions/checkout@v3 
-
+        uses: actions/checkout@v3
+        
       - name: Set up Python
-        uses: actions/setup-python@v4 
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
+          
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install black pylint pytest bandit
-
+          
       - name: Lint with Black
         run: black --check .
-
+        
       - name: Lint with Pylint
-        run: |
-          pip install pylint
-          pylint $(find . -name "*.py")
-
+        run: pylint $(find . -name "*.py")
+        
       - name: Security Check with Bandit
         run: bandit -r .
+
+  terraform-lint-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        
+      - name: Terraform Init
+        run: terraform init -backend=false
+        
+      - name: Terraform Format
+        run: terraform fmt -check -recursive
+        
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v3
+        with:
+          tflint_version: v0.46.1
+          
+      - name: Run TFLint
+        run: tflint --recursive
+        
+      - name: Install tfsec
+        run: |
+          curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
+          
+      - name: Run tfsec
+        run: tfsec .
+        
+      - name: Install Checkov
+        run: pip install checkov
+        
+      - name: Run Checkov
+        run: checkov -d . --quiet
+        
+      - name: Install Terrascan
+        run: |
+          curl -L "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
+          tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz
+          install terrascan /usr/local/bin && rm terrascan
+          
+      - name: Run Terrascan
+        run: terrascan scan -i terraform
