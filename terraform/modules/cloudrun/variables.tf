@@ -1,11 +1,5 @@
 #modules/cloudrun/variables.tf
 
-variable "project_id" {
-  type        = string
-  description = "The id of the project"
-  default     = "recrutement-polyconseil"
-}
-
 variable "location" {
   type        = string
   description = "The location of the deployment"
