@@ -7,4 +7,8 @@ module "storage" {
     database_name = "shopping-database-${var.environment}"
 
     repository_id = "shopping-list-repo-${var.environment}"
+
+    #private_network = module.vpc.vpc_id
+
+    #depends_on = [module.vpc]
 }
