@@ -18,12 +18,6 @@ resource "google_cloud_run_v2_service" "default" {
 
   template {
 
-    #service_account = var.service_account 
-    /*
-    annotations = {
-      "run.googleapis.com/vpc-access-connector" = var.vpc_connector_name
-      "run.googleapis.com/vpc-access-egress"    = "all-traffic"
-    }*/
 
 
     containers {

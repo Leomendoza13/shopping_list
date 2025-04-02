@@ -33,14 +33,3 @@ variable "database_password" {
   description = "Password for database"
   type        = string
 }
-/*
-variable cloud_run_ip_address {
-    description = "Ip address of cloud run"
-    type = string
-}
-
-variable "private_network" {
-  description = "VPC ID for private connexions"
-  type        = string
-}
-*/
