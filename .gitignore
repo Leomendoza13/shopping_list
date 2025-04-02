@@ -14,3 +14,6 @@ terraform.rc
 .*.swp
 
 .venv
+
+terraform.tfvars
+app.py
