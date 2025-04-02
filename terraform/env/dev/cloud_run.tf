@@ -10,5 +10,11 @@ module "cloudrun" {
 
     #vpc_connector_name = module.vpc.connector_name
 
+    #database connection
+    database_url = module.storage.database_connection_string
+
+    database_user = var.database_user
+    database_password = var.database_password
+
     depends_on = [module.storage]
 }

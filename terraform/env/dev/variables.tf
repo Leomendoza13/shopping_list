@@ -16,3 +16,13 @@ variable environment {
   description = "Environment (dev, staging, prod)"
   default     = "dev"
 }
+
+variable "database_user" {
+  description = "User name for database"
+  type        = string
+}
+
+variable "database_password" {
+  description = "Password for database"
+  type        = string
+}
