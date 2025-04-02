@@ -33,10 +33,10 @@ def get_db_connection():
         conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
         return conn
     except psycopg2.OperationalError as error:
-        app.logger.error(f"Database connection error: {str(error)}")
+        app.logger.error("Database connection error: %s", str(error))
         return None
     except psycopg2.Error as error:
-        app.logger.error(f"General database error: {str(error)}")
+        app.logger.error("General database error: %s", str(error))
         return None
 
 
@@ -62,10 +62,10 @@ def init_db():
             app.logger.info("items table created or already exists")
     except psycopg2.ProgrammingError as error:
         app.logger.error(
-            f"SQL syntax error during database initialization: {str(error)}"
+            "SQL syntax error during database initialization: %s", str(error)
         )
     except psycopg2.Error as error:
-        app.logger.error(f"Database error during initialization: {str(error)}")
+        app.logger.error("Database error during initialization: %s", str(error))
 
 
 @app.route("/", methods=["GET"])
@@ -98,10 +98,10 @@ def test_db():
             return f"Database connection successful: {result[0]}"
         return "Error establishing database connection", 500
     except psycopg2.OperationalError as error:
-        app.logger.error(f"Database operational error: {str(error)}")
+        app.logger.error("Database operational error: %s", str(error))
         return f"Database operational error: {str(error)}", 500
     except psycopg2.Error as error:
-        app.logger.error(f"Database error: {str(error)}")
+        app.logger.error("Database error: %s", str(error))
         return f"Database error: {str(error)}", 500
 
 
