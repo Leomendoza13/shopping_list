@@ -23,3 +23,18 @@ variable image_path {
     description = "The path of the image docker inside the registry"
     default = "europe-west1-docker.pkg/recrutement-polyconseil/shopping-list-repo/app:latest"
 }
+
+variable db_connection_name {
+  description = "Connection name for the Cloud SQL instance"
+  type        = string
+}
+/*
+variable "service_account" {
+  description = "The service account email to use for the Cloud Run service"
+  type        = string
+}
+
+variable vpc_connector_name {
+    type = string
+    description = "vpc_connector_name"
+}*/
