@@ -1,13 +1,14 @@
 #modules/iam/main.tf
 
 terraform {
+  required_version = ">= 1.0.0"
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
+      version = "~> 4.0"
     }
   }
 }
-
 resource "google_service_account" "cloud_run_service_account" {
   account_id   = "cloud-run-service-account"
   display_name = "Service Account for Cloud Run"
