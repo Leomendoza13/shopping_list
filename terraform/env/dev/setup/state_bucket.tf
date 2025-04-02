@@ -1,8 +1,8 @@
 #env/dev/setup/state_bucket.tf
 
 provider "google" {
-  project     = var.project_id
-  region      = var.region
+  project = var.project_id
+  region  = var.region
 }
 
 resource "google_storage_bucket" "bucket-terraform-state" {

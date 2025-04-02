@@ -5,12 +5,12 @@ resource "google_sql_database_instance" "sql_database_instance" {
 
   settings {
     tier = "db-f1-micro"
-    
+
     # ip_configuration {
     #   ipv4_enabled    = false 
     #   private_network = var.private_network  
     # }
-    
+
     #only dev
     ip_configuration {
       authorized_networks {
@@ -25,7 +25,7 @@ resource "google_sql_database_instance" "sql_database_instance" {
 resource "google_sql_user" "database_user" {
   name     = var.database_user
   instance = google_sql_database_instance.sql_database_instance.name
-  password = var.database_password  
+  password = var.database_password
 }
 
 resource "google_sql_database" "database" {
