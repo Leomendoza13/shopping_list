@@ -28,3 +28,13 @@ variable private_network {
     description = "VPC ID for private connexions"
     type        = string
 }*/
+
+variable "database_user" {
+  description = "User name for database"
+  type        = string
+}
+
+variable "database_password" {
+  description = "Password for database"
+  type        = string
+}
