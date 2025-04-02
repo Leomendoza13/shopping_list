@@ -23,6 +23,6 @@ docker push ${IMAGE_NAME}
 
 
 cd terraform/env/dev/
-terraform apply -target=module.cloudrun
+terraform apply
 
 #SERVICE_URL=$(terraform output -raw service_url)
