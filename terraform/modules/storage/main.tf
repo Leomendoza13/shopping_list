@@ -1,3 +1,13 @@
+#modules/storage/main.tf
+
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
+}
+
 resource "google_sql_database_instance" "sql_database_instance" {
   name             = var.sql_database_instance_name
   database_version = "POSTGRES_15"

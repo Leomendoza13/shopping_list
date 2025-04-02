@@ -1,5 +1,13 @@
 #modules/cloudrun/main.tf
 
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
+}
+
 resource "google_cloud_run_v2_service" "default" {
   name                = var.cloud_run_name
   location            = var.location

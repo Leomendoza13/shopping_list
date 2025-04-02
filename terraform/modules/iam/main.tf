@@ -1,5 +1,13 @@
 #modules/iam/main.tf
 
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
+}
+
 resource "google_service_account" "cloud_run_service_account" {
   account_id   = "cloud-run-service-account"
   display_name = "Service Account for Cloud Run"
