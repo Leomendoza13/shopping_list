@@ -1,5 +1,3 @@
-#modules/network/main.tf
-
 variable "name" {
   type        = string
   description = "Name of the vpc"

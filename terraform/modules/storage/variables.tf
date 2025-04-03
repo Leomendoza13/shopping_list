@@ -1,5 +1,3 @@
-#modules/storage/main.tf
-
 variable "sql_database_instance_name" {
   type        = string
   description = "Name of the SQL database instance"

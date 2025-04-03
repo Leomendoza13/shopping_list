@@ -1,5 +1,3 @@
-#env/dev/cloud_run.tf
-
 module "cloudrun" {
   source             = "../../modules/cloudrun/"
   cloud_run_name     = "cloudrun-service-${var.environment}"
