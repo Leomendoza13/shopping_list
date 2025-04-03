@@ -18,45 +18,55 @@ A high-level overview of the architecture:
 - **Artifact Registry** stores the Docker image.
 - **Cloud Run** hosts the containerized application, ensuring scalability and availability.
 - **Cloud SQL** (PostgreSQL) stores the shopping list persistently.
-- **VPC** provides network isolation and security.
 
 ## Project Structure
 
 ```
 .
 ├── LICENSE
+├── Makefile
 ├── README.md
-├── deploy-dev.sh
-├── destroy-dev.sh
 ├── dockerfile
 ├── requirements.txt
 ├── src
-│   └── app.py
+│   └── app.py
 └── terraform
     ├── env
-    │   ├── dev
-    │   │   ├── backend.tf
-    │   │   ├── cloud_run.tf
-    │   │   ├── iam.tf
-    │   │   ├── main.tf
-    │   │   ├── provider.tf
-    │   │   ├── setup
-    │   │   │   ├── state_bucket.tf
-    │   │   │   ├── variables.tf
-    │   │   │   └── versions.tf
-    │   │   ├── storage.tf
-    │   │   ├── terraform.tfvars
-    │   │   ├── variables.tf
-    │   │   └── vpc.tf
-    │   ├── prod
-    │   │   └── main.tf
-    │   └── staging
-    │       └── main.tf
+    │   ├── dev
+    │   │   ├── backend.tf
+    │   │   ├── cloud_run.tf
+    │   │   ├── example.tfvars
+    │   │   ├── iam.tf
+    │   │   ├── main.tf
+    │   │   ├── provider.tf
+    │   │   ├── setup
+    │   │   │   ├── state_bucket.tf
+    │   │   │   ├── variables.tf
+    │   │   │   └── versions.tf
+    │   │   ├── storage.tf
+    │   │   ├── variables.tf
+    │   │   └── vpc.tf
+    │   ├── prod
+    │   │   └── main.tf
+    │   └── staging
+    │       └── main.tf
     └── modules
         ├── cloudrun
+        │   ├── main.tf
+        │   ├── outputs.tf
+        │   └── variables.tf
         ├── iam
+        │   ├── main.tf
+        │   ├── outputs.tf
+        │   └── variables.tf
         ├── network
+        │   ├── main.tf
+        │   ├── outputs.tf
+        │   └── variables.tf
         └── storage
+            ├── main.tf
+            ├── outputs.tf
+            └── variables.tf
 ```
 
 ## Prerequisites
@@ -122,18 +132,18 @@ database_user     = "your-user"
 database_password = "your-password"
 ```
 
-### Step 4: Open Docker Desktop
+### Step 4: Configure Docker
 
-1. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) if it is not already installed.
+1. Install [Docker](https://docs.docker.com/engine/install/) if it is not already installed.
 
-2. Open Docker Desktop by double click on it.
+2. Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) for windows and open it.
 
 ### Step 5: Deploy the Application
 
-1. Deploy the application using the provided script:
+1. Deploy the application using the provided Makefile:
 
 ```bash
-./deploy-dev.sh
+make
 ```
 
 2. Write yes in the CLI whenever it is asked to do so.
@@ -161,31 +171,28 @@ curl -X GET -H "Authorization: Bearer $(gcloud auth print-identity-token)" https
 
 ### **Step 8: ⚠️ DON'T FORGET TO `terraform destroy` WHEN YOU ARE DONE ⚠️**
 
-To destroy the infrastructure and avoid unnecessary costs, run the script:
+To destroy the infrastructure and avoid unnecessary costs, run the makefile rule:
 
 ```bash
-./destroy-dev.sh
+make destroy
 ```
 
 ## TODO for V2
 
 1. Replace Cloud SQL with Firestore
 2. Use Google Secret Manager for database access
-3. Add logging and monitoring with Google Cloud Logging
-4. Set up caching for database queries
-5. Implement stronger CI/CD pipeline for automated deployments
-6. Restrict database access to private network only
-7. Implement rigorous permission management
-8. Configure backup and recovery protocols
-9. Secure deployment pipeline with vulnerability scanning
-10. Configure multiple environments (staging, production)
-11. Configure service accounts with least privilege principle
-12. Set up VPC connector for Cloud Run to secure internal resource
-13. Implement API authentication beyond identity tokens
-14. Configure alerting for system anomalies
-15. Implement data encryption at rest and in transit
-16. Configure auto-scaling based on demand and traffic patterns
-17. Configure network firewall rules to restrict traffic
+3. Add logging with Google Cloud Logging
+4. Implement stronger CI/CD pipeline for automated deployments
+5. Restrict database access to private network only
+6. Configure backup and recovery protocols
+7. Configure multiple environments (staging, production)
+8. Configure service accounts with least privilege principle
+9. Set up VPC connector for Cloud Run to secure internal resource
+10. Implement API authentication beyond identity tokens
+11. Configure alerting for system anomalies (Google Cloud Monitoring Alerting, Prometheus)
+12. Implement data encryption at rest and in transit
+13. Configure auto-scaling based on demand and traffic patterns
+14. Configure network firewall rules to restrict traffic
 
 ## License
 
