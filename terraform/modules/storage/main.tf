@@ -61,8 +61,8 @@ resource "google_sql_database_instance" "sql_database_instance" {
 }
 
 resource "google_sql_user" "database_user" {
-  name     = var.database_user
-  instance = google_sql_database_instance.sql_database_instance.name
+  name        = var.database_user
+  instance    = google_sql_database_instance.sql_database_instance.name
   password_wo = var.database_password
 }
 
