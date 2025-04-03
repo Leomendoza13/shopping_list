@@ -1,5 +1,3 @@
-#modules/cloudrun/variables.tf
-
 variable "location" {
   type        = string
   description = "The location of the deployment"

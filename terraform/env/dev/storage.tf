@@ -1,5 +1,3 @@
-#env/dev/storage.tf
-
 module "storage" {
   source = "../../modules/storage/"
 

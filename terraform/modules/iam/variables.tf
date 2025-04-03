@@ -1,5 +1,3 @@
-#modules/iam/variables.tf
-
 variable "project_id" {
   type        = string
   description = "The id of the project"
